@@ -15,7 +15,7 @@ public class FRM_Instrucciones extends javax.swing.JFrame {
      */
     public FRM_Instrucciones() {
         initComponents();
-       rsscalelabel.RSScaleLabel.setScaleLabel(Miel, "src/ImagenesJuego/Mielgiphy.gif");
+        rsscalelabel.RSScaleLabel.setScaleLabel(Miel, "src/ImagenesJuego/Mielgiphy.gif");
         rsscalelabel.RSScaleLabel.setScaleLabel(fondoIns, "src/ImagenesJuego/InstruccionesFondo.jpg");
 
 
@@ -74,7 +74,7 @@ public class FRM_Instrucciones extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-   
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Miel;
     private javax.swing.JLabel fondoIns;

@@ -5,6 +5,8 @@
 package Vista;
 
 import Controlador.HiloJuego;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
@@ -13,9 +15,11 @@ import javax.sound.sampled.Clip;
  * @author krist
  */
 public class FRM_AreaJuego extends javax.swing.JFrame {
-   String estadoPersonaje = "Suelo";
+
+    String estadoPersonaje = "Suelo";
     HiloJuego hilo;
     private Clip sonidoFondo;
+
     /**
      * Creates new form FRM_AreaJuego
      */
@@ -35,8 +39,33 @@ public class FRM_AreaJuego extends javax.swing.JFrame {
         } catch (Exception e) {
             e.getMessage();
         }
+
+        addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                // No se utiliza en este caso
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                // Verificar si la tecla presionada es la tecla espacio
+                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    moverPersonaje();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                // No se utiliza en este caso
+            }
+        });
+
+        // Configuración adicional
+        setFocusable(true); // Permitir que el JFrame reciba el foco
+        requestFocus(); // Solicitar el foco para poder recibir eventos del teclado
+
     }
-    
+
     public void moverPersonaje() {
         if (estadoPersonaje.equals("Subiendo")) {
             memilCorriendo.setLocation(memilCorriendo.getX() + 1, memilCorriendo.getY() - 5);
@@ -51,29 +80,44 @@ public class FRM_AreaJuego extends javax.swing.JFrame {
             estadoPersonaje = "Suelo";
         }
     }//Fin del metodo moverPersonaje
-    
+
     public void moverFondo() {
-        if (fondo.getX() > -170) {
-            fondo.setLocation(fondo.getX() - 1, fondo.getY());
-        } else {
-            fondo.setLocation(0, fondo.getY());
+        int velocidadMovimiento = 10; // Velocidad de movimiento del fondo
+
+        // Mover los fondos gradualmente hacia la izquierda
+        fondo.setLocation(fondo.getX() - velocidadMovimiento, fondo.getY());
+        fondo2.setLocation(fondo2.getX() - velocidadMovimiento, fondo2.getY());
+
+        // Obtener el ancho de los fondos
+        int anchoFondo = fondo.getWidth();
+
+        // Verificar si el fondo ha alcanzado su posición más a la izquierda
+        if (fondo.getX() <= -anchoFondo) {
+            // Reposicionar el fondo al final del otro fondo
+            fondo.setLocation(fondo2.getX() + anchoFondo, fondo.getY());
+        }
+
+        // Verificar si el fondo2 ha alcanzado su posición más a la izquierda
+        if (fondo2.getX() <= -anchoFondo) {
+            // Reposicionar el fondo2 al final del otro fondo
+            fondo2.setLocation(fondo.getX() + anchoFondo, fondo2.getY());
         }
     }//Fin del metodo moverFondo
-    
-     public void moverAbeja() {
+
+    public void moverAbeja() {
         abeja.setLocation(abeja.getX() - 2, abeja.getY());
         if (abeja.getX() < -50) {
             abeja.setLocation(1000, abeja.getY());
         }
     }//Fin del metodo moverMalo
-     
-     public void detectarColision() {
+
+    public void detectarColision() {
         if (abeja.getX() < (memilCorriendo.getX() + 115)
                 && (abeja.getX() + 110) > memilCorriendo.getX()
                 && (memilCorriendo.getY() + 35) > abeja.getY()) {
             hilo.gameOver = true;
 
-        } 
+        }
 
     }//Finb del metodo
 
@@ -89,18 +133,29 @@ public class FRM_AreaJuego extends javax.swing.JFrame {
         abeja = new javax.swing.JLabel();
         memilCorriendo = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
+        fondo2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(153, 153, 153));
+        setMaximumSize(new java.awt.Dimension(850, 615));
+        setPreferredSize(new java.awt.Dimension(470, 380));
+        setSize(new java.awt.Dimension(470, 370));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         abeja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesJuego/Abeja.gif"))); // NOI18N
-        getContentPane().add(abeja, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 100, 100));
+        abeja.setPreferredSize(new java.awt.Dimension(50, 50));
+        getContentPane().add(abeja, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, -1, -1));
 
         memilCorriendo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesJuego/MemilCaminando.gif"))); // NOI18N
-        getContentPane().add(memilCorriendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 150, 170));
+        memilCorriendo.setLabelFor(memilCorriendo);
+        memilCorriendo.setPreferredSize(new java.awt.Dimension(180, 135));
+        getContentPane().add(memilCorriendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesJuego/Fondo.jpg"))); // NOI18N
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 370));
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, -1, 370));
+
+        fondo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesJuego/Fondo.jpg"))); // NOI18N
+        getContentPane().add(fondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-270, 0, 570, 370));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -109,10 +164,10 @@ public class FRM_AreaJuego extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel abeja;
     private javax.swing.JLabel fondo;
+    private javax.swing.JLabel fondo2;
     private javax.swing.JLabel memilCorriendo;
     // End of variables declaration//GEN-END:variables
 }

@@ -27,10 +27,10 @@ FRM_AreaJuego areaJuego;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btn_Inicio = new javax.swing.JButton();
         btn_Historia = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         btn_Puntuaciones = new javax.swing.JButton();
         btn_Instrucciones = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -39,14 +39,9 @@ FRM_AreaJuego areaJuego;
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 204));
-        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesJuego/Abeja.gif"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 150, 150));
-
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesJuego/giphy_s.gif"))); // NOI18N
         jLabel3.setText("jLabel3");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 210, 140, 170));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 140, 170));
 
         btn_Inicio.setBackground(new java.awt.Color(255, 204, 204));
         btn_Inicio.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
@@ -69,6 +64,11 @@ FRM_AreaJuego areaJuego;
             }
         });
         getContentPane().add(btn_Historia, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesJuego/Abeja.gif"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 150, 150));
 
         btn_Puntuaciones.setBackground(new java.awt.Color(255, 204, 204));
         btn_Puntuaciones.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N

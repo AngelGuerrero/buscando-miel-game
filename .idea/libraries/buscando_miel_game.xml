@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="buscando-miel-game">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/opencsv-5.7.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/RSScaleLabel.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
